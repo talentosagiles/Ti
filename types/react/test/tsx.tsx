@@ -549,7 +549,7 @@ imgProps.loading = "nonsense";
 // @ts-expect-error
 imgProps.decoding = "nonsense";
 type ImgPropsWithRef = React.ComponentPropsWithRef<"img">;
-// $ExpectType ((instance: HTMLImageElement | null) => void) | RefObject<HTMLImageElement> | null | undefined
+// $ExpectType ((instance: HTMLImageElement | null) => void) | RefObject<HTMLImageElement | null> | null | undefined
 type ImgPropsWithRefRef = ImgPropsWithRef["ref"];
 type ImgPropsWithoutRef = React.ComponentPropsWithoutRef<"img">;
 // $ExpectType false
@@ -869,14 +869,14 @@ function elementTypeTests() {
 }
 
 function managingRefs() {
-    const genericRefBad = React.useRef<Element>();
+    const genericRefBad = React.useRef<Element>(undefined);
     // $ExpectType Element | undefined
     genericRefBad.current;
     const genericRef = React.useRef<Element>(null);
     // $ExpectType Element | null
     genericRef.current;
 
-    const inputRefBad = React.useRef<HTMLInputElement>();
+    const inputRefBad = React.useRef<HTMLInputElement>(undefined);
     // $ExpectType HTMLInputElement | undefined
     inputRefBad.current;
     const inputRef = React.useRef<HTMLInputElement>(null);
