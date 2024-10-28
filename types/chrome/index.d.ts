@@ -643,12 +643,13 @@ declare namespace chrome.audio {
 ////////////////////
 // Browser
 ////////////////////
+declare namespace chrome {
 /**
  * Use the chrome.browser API to interact with the Chrome browser associated with
  * the current application and Chrome profile.
  * @deprecated Part of the deprecated Chrome Apps platform
  */
-declare namespace chrome.browser {
+export namespace browser {
     export interface Options {
         /** The URL to navigate to when the new tab is initially opened. */
         url: string;
@@ -672,6 +673,7 @@ declare namespace chrome.browser {
      * @param options Configures how the tab should be opened.
      */
     export function openTab(options: Options): void;
+}
 }
 
 ////////////////////
@@ -7383,6 +7385,7 @@ declare namespace chrome.search {
 ////////////////////
 // Serial
 ////////////////////
+declare namespace chrome {
 /**
  * Use the <code>chrome.serial</code> API to read from and write to a device connected to a serial port.
  * Permissions:  "enterprise.serial"
@@ -7390,7 +7393,7 @@ declare namespace chrome.search {
  * Important: This API works only on Chrome OS.
  * @deprecated Part of the deprecated Chrome Apps platform
  */
-declare namespace chrome.serial {
+export namespace serial {
     export const DataBits: {
         SEVEN: "seven";
         EIGHT: "eight";
@@ -7584,6 +7587,7 @@ declare namespace chrome.serial {
      * @param callback
      */
     export function clearBreak(connectionId: number, callback: (result: boolean) => void): void;
+}
 }
 
 declare namespace chrome.serial.onReceive {
@@ -9087,10 +9091,11 @@ declare namespace chrome.storage {
 ////////////////////
 // Socket
 ////////////////////
+declare namespace chrome {
 /**
  * @deprecated Part of the deprecated Chrome Apps platform
  */
-declare namespace chrome.socket {
+export namespace socket {
     export interface CreateInfo {
         socketId: number;
     }
@@ -9166,6 +9171,7 @@ declare namespace chrome.socket {
     export function setNoDelay(socketId: number, noDelay: boolean, callback?: (result: boolean) => void): void;
     export function getInfo(socketId: number, callback: (result: SocketInfo) => void): void;
     export function getNetworkList(callback: (result: NetworkInterface[]) => void): void;
+}
 }
 
 ////////////////////
