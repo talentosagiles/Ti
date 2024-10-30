@@ -1575,6 +1575,8 @@ async function testSystemDisplay() {
     chrome.system.display.getDisplayLayout((layouts) => { // $ExpectType void
         layouts; // $ExpectType DisplayLayout[]
     });
+    // @ts-expect-error
+    chrome.printing.getPrinterInfo(() => {}).then(() => {});
 
     const flags = { singleUnified: true };
     chrome.system.display.getInfo(); // $ExpectType Promise<DisplayUnitInfo[]>
@@ -1585,6 +1587,8 @@ async function testSystemDisplay() {
     chrome.system.display.getInfo(flags, (displayInfo) => { // $ExpectType void
         displayInfo; // $ExpectType DisplayUnitInfo[]
     });
+    // @ts-expect-error
+    chrome.system.display.getInfo(() => {}).then(() => {});
 
     const insets = { left: 0, top: 0, right: 0, bottom: 0 };
     chrome.system.display.overscanCalibrationAdjust("id", insets); // $ExpectType void
@@ -1603,6 +1607,8 @@ async function testSystemDisplay() {
     } as const;
     chrome.system.display.setDisplayLayout([displayLayout]); // $ExpectType Promise<void>
     chrome.system.display.setDisplayLayout([displayLayout], () => {}); // $ExpectType void
+    // @ts-expect-error
+    chrome.system.display.setDisplayLayout([displayLayout], () => {}).then(() => {});
 
     const displayProperties = {
         isUnified: true,
@@ -1616,17 +1622,23 @@ async function testSystemDisplay() {
     } as const;
     chrome.system.display.setDisplayProperties("id", displayProperties); // $ExpectType Promise<void>
     chrome.system.display.setDisplayProperties("id", displayProperties, () => {}); // $ExpectType void
+    // @ts-expect-error
+    chrome.system.display.setDisplayProperties("id", displayProperties, () => {}).then(() => {});
 
     const mirrorModeInfo = {
         mode: "off",
     } as const;
     chrome.system.display.setMirrorMode(mirrorModeInfo); // $ExpectType Promise<void>
     chrome.system.display.setMirrorMode(mirrorModeInfo, () => {}); // $ExpectType void
+    // @ts-expect-error
+    chrome.system.display.setMirrorMode(mirrorModeInfo, () => {}).then(() => {});
 
     chrome.system.display.showNativeTouchCalibration("id"); // $ExpectType Promise<boolean>
     chrome.system.display.showNativeTouchCalibration("id", (success) => { // $ExpectType void
         success; // $ExpectType boolean
     });
+    // @ts-expect-error
+    chrome.system.display.showNativeTouchCalibration("id", () => {}).then(() => {});
 
     chrome.system.display.startCustomTouchCalibration("id"); // $ExpectType void
 
