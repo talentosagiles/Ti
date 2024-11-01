@@ -1,7 +1,7 @@
 import { geojsonToWKT, wktToGeoJSON } from "@terraformer/wkt";
 import { GeoJSON } from "geojson";
 
-// $ExpectType GeoJSON<Geometry | null, GeoJsonProperties>
+// $ExpectType GeoJSON || GeoJSON<Geometry | null, GeoJsonProperties>
 wktToGeoJSON(
     "POINT (-122.6764 45.5165)",
 );

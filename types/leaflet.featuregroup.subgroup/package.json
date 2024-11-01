@@ -6,7 +6,8 @@
         "https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup"
     ],
     "dependencies": {
-        "@types/leaflet": "*"
+        "@types/leaflet": "*",
+        "@types/geojson": "*"
     },
     "devDependencies": {
         "@types/leaflet.featuregroup.subgroup": "workspace:."

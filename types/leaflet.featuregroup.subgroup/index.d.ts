@@ -1,3 +1,4 @@
+import { GeoJsonProperties } from "geojson";
 import * as L from "leaflet";
 
 declare module "leaflet" {
@@ -8,7 +9,7 @@ declare module "leaflet" {
          * usage is to dynamically add and remove groups of markers from marker
          * clusters.
          */
-        class SubGroup<P = any> extends FeatureGroup<P> {
+        class SubGroup<P extends GeoJsonProperties = any> extends FeatureGroup<P> {
             /**
              * Instantiates a SubGroup.
              */
