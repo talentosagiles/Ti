@@ -1,3 +1,4 @@
+import { GeoJsonProperties } from "geojson";
 import * as GeoJSON from "geojson";
 
 export as namespace supercluster;
@@ -90,7 +91,7 @@ declare namespace Supercluster {
      * with the geometry being a
      * [GeoJSON Point](https://tools.ietf.org/html/rfc7946#section-3.1.2).
      */
-    type PointFeature<P> = GeoJSON.Feature<GeoJSON.Point, P>;
+    type PointFeature<P extends GeoJsonProperties> = GeoJSON.Feature<GeoJSON.Point, P>;
 
     interface ClusterProperties {
         /**
