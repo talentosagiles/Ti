@@ -1,6 +1,7 @@
 import {
     Feature,
     FeatureCollection,
+    GeoJSON,
     GeoJsonGeometryTypes,
     GeoJsonTypes,
     GeometryCollection,
@@ -479,3 +480,42 @@ for (const { geometry } of collectionDefault.features) {
             break;
     }
 }
+
+// Features & collections with null geometries should be assignable to GeoJSON
+const featureWithNullGeometry = {
+    type: "Feature" as const,
+    geometry: null,
+    properties: null,
+};
+const featureCollectionWithNullGeometry = {
+    type: "FeatureCollection" as const,
+    features: [featureWithNullGeometry],
+};
+const featureWithNullGeometryAsFeature: Feature = featureWithNullGeometry;
+const featureCollectionWithNullGeometryAsFeatureCollection: FeatureCollection = featureCollectionWithNullGeometry;
+const featureWithNullGeometryAsGeoJSON: GeoJSON = featureWithNullGeometry;
+const featureCollectionWithNullGeometryAsGeoJSON: GeoJSON = featureCollectionWithNullGeometry;
+
+// Top level geojson should be generic to allow geometry and properties types to be modified
+const geoJsonWithSpecificGeometryAndProperties: GeoJSON<Point, { a: number }>[] = [
+    {
+        type: "Feature",
+        geometry: point,
+        properties: { a: 34 },
+    },
+    {
+        type: "FeatureCollection",
+        features: [
+            {
+                type: "Feature",
+                // @ts-expect-error -- Geometry does not adhere to the specified type
+                geometry: lineString,
+                // @ts-expect-error -- Properties does not adhere to the specified type
+                properties: {},
+            },
+        ],
+    },
+];
+
+// @ts-expect-error -- Number should not be usable as a properties type
+declare const featureWithInvalidNumberProperties: Feature<Point, number>;
