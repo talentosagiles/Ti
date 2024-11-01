@@ -4,6 +4,7 @@ import {
     GeoJSON,
     GeoJsonGeometryTypes,
     GeoJsonTypes,
+    Geometry,
     GeometryCollection,
     GeometryObject,
     LineString,
@@ -14,7 +15,7 @@ import {
     Polygon,
 } from "geojson";
 
-let featureCollection: FeatureCollection = {
+let featureCollection: FeatureCollection<Geometry> = {
     type: "FeatureCollection",
     features: [
         {
@@ -441,7 +442,7 @@ const collectionNoNull: FeatureCollection<Point, TestProperty> = {
     features: [featureNoNull],
 };
 
-const collectionDefault: FeatureCollection = {
+const collectionDefault: FeatureCollection<Geometry> = {
     type: "FeatureCollection",
     features: [],
 };
