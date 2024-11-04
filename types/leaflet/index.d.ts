@@ -1,6 +1,5 @@
 export as namespace L;
 
-import { GeoJsonProperties } from "geojson";
 import * as geojson from "geojson";
 
 /** A constant that represents the Leaflet version in use. */
@@ -2047,10 +2046,9 @@ export interface PolylineOptions extends PathOptions {
     noClip?: boolean | undefined;
 }
 
-export class Polyline<
-    T extends geojson.GeometryObject = geojson.LineString | geojson.MultiLineString,
-    P extends GeoJsonProperties = any,
-> extends Path {
+export class Polyline<T extends geojson.GeometryObject = geojson.LineString | geojson.MultiLineString, P = any>
+    extends Path
+{
     constructor(latlngs: LatLngExpression[] | LatLngExpression[][], options?: PolylineOptions);
     toGeoJSON(precision?: number | false): geojson.Feature<T, P>;
     getLatLngs(): LatLng[] | LatLng[][] | LatLng[][][];
@@ -2065,38 +2063,32 @@ export class Polyline<
     options: PolylineOptions;
 }
 
-export function polyline<
-    T extends geojson.GeometryObject = geojson.LineString | geojson.MultiLineString,
-    P extends GeoJsonProperties = any,
->(
+export function polyline<T extends geojson.GeometryObject = geojson.LineString | geojson.MultiLineString, P = any>(
     latlngs: LatLngExpression[] | LatLngExpression[][],
     options?: PolylineOptions,
 ): Polyline<T, P>;
 
-export class Polygon<P extends GeoJsonProperties = any> extends Polyline<geojson.Polygon | geojson.MultiPolygon, P> {
+export class Polygon<P = any> extends Polyline<geojson.Polygon | geojson.MultiPolygon, P> {
     constructor(latlngs: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][], options?: PolylineOptions);
 }
 
-export function polygon<P extends GeoJsonProperties = any>(
+export function polygon<P = any>(
     latlngs: LatLngExpression[] | LatLngExpression[][] | LatLngExpression[][][],
     options?: PolylineOptions,
 ): Polygon<P>;
 
-export class Rectangle<P extends GeoJsonProperties = any> extends Polygon<P> {
+export class Rectangle<P = any> extends Polygon<P> {
     constructor(latLngBounds: LatLngBoundsExpression, options?: PolylineOptions);
     setBounds(latLngBounds: LatLngBoundsExpression): this;
 }
 
-export function rectangle<P extends GeoJsonProperties = any>(
-    latLngBounds: LatLngBoundsExpression,
-    options?: PolylineOptions,
-): Rectangle<P>;
+export function rectangle<P = any>(latLngBounds: LatLngBoundsExpression, options?: PolylineOptions): Rectangle<P>;
 
 export interface CircleMarkerOptions extends PathOptions {
     radius: number;
 }
 
-export class CircleMarker<P extends GeoJsonProperties = any> extends Path {
+export class CircleMarker<P = any> extends Path {
     constructor(latlng: LatLngExpression, options: CircleMarkerOptions);
     toGeoJSON(precision?: number | false): geojson.Feature<geojson.Point, P>;
     setLatLng(latLng: LatLngExpression): this;
@@ -2109,14 +2101,11 @@ export class CircleMarker<P extends GeoJsonProperties = any> extends Path {
     feature?: geojson.Feature<geojson.Point, P> | undefined;
 }
 
-export function circleMarker<P extends GeoJsonProperties = any>(
-    latlng: LatLngExpression,
-    options?: CircleMarkerOptions,
-): CircleMarker<P>;
+export function circleMarker<P = any>(latlng: LatLngExpression, options?: CircleMarkerOptions): CircleMarker<P>;
 
 export type CircleOptions = CircleMarkerOptions;
 
-export class Circle<P extends GeoJsonProperties = any> extends CircleMarker<P> {
+export class Circle<P = any> extends CircleMarker<P> {
     constructor(latlng: LatLngExpression, options: CircleOptions);
     constructor(latlng: LatLngExpression, radius: number, options?: CircleOptions); // deprecated!
     toGeoJSON(precision?: number | false): any;
@@ -2126,18 +2115,11 @@ export class Circle<P extends GeoJsonProperties = any> extends CircleMarker<P> {
     setStyle(style: PathOptions): this;
 }
 
-export function circle<P extends GeoJsonProperties = any>(
-    latlng: LatLngExpression,
-    options: CircleMarkerOptions,
-): Circle<P>;
+export function circle<P = any>(latlng: LatLngExpression, options: CircleMarkerOptions): Circle<P>;
 /**
  * @deprecated Passing the radius outside the options is deperecated. Use {@link circle:1} instead.
  */
-export function circle<P extends GeoJsonProperties = any>(
-    latlng: LatLngExpression,
-    radius: number,
-    options?: CircleMarkerOptions,
-): Circle<P>;
+export function circle<P = any>(latlng: LatLngExpression, radius: number, options?: CircleMarkerOptions): Circle<P>;
 
 export interface RendererOptions extends LayerOptions {
     padding?: number | undefined;
@@ -2170,7 +2152,7 @@ export function canvas(options?: RendererOptions): Canvas;
  * If you add it to the map, any layers added or removed from the group will be
  * added/removed on the map as well. Extends Layer.
  */
-export class LayerGroup<P extends GeoJsonProperties = any> extends Layer {
+export class LayerGroup<P = any> extends Layer {
     constructor(layers?: Layer[], options?: LayerOptions);
 
     toMultiPoint(precision?: number): geojson.Feature<geojson.MultiPoint, P>;
@@ -2247,13 +2229,13 @@ export class LayerGroup<P extends GeoJsonProperties = any> extends Layer {
 /**
  * Create a layer group, optionally given an initial set of layers and an `options` object.
  */
-export function layerGroup<P extends GeoJsonProperties = any>(layers?: Layer[], options?: LayerOptions): LayerGroup<P>;
+export function layerGroup<P = any>(layers?: Layer[], options?: LayerOptions): LayerGroup<P>;
 
 /**
  * Extended LayerGroup that also has mouse events (propagated from
  * members of the group) and a shared bindPopup method.
  */
-export class FeatureGroup<P extends GeoJsonProperties = any> extends LayerGroup<P> {
+export class FeatureGroup<P = any> extends LayerGroup<P> {
     /**
      * Adds the given layer to the group.
      */
@@ -2289,19 +2271,13 @@ export class FeatureGroup<P extends GeoJsonProperties = any> extends LayerGroup<
 /**
  * Create a feature group, optionally given an initial set of layers.
  */
-export function featureGroup<P extends GeoJsonProperties = any>(
-    layers?: Layer[],
-    options?: LayerOptions,
-): FeatureGroup<P>;
+export function featureGroup<P = any>(layers?: Layer[], options?: LayerOptions): FeatureGroup<P>;
 
-export type StyleFunction<P extends GeoJsonProperties = any> = (
-    feature?: geojson.Feature<geojson.GeometryObject, P>,
-) => PathOptions;
+export type StyleFunction<P = any> = (feature?: geojson.Feature<geojson.GeometryObject, P>) => PathOptions;
 
-export interface GeoJSONOptions<
-    P extends GeoJsonProperties = any,
-    G extends geojson.GeometryObject = geojson.GeometryObject,
-> extends InteractiveLayerOptions {
+export interface GeoJSONOptions<P = any, G extends geojson.GeometryObject = geojson.GeometryObject>
+    extends InteractiveLayerOptions
+{
     /**
      * A Function defining how GeoJSON points spawn Leaflet layers.
      * It is internally called when data is added, passing the GeoJSON point
@@ -2370,13 +2346,11 @@ export interface GeoJSONOptions<
  * Represents a GeoJSON object or an array of GeoJSON objects.
  * Allows you to parse GeoJSON data and display it on the map. Extends FeatureGroup.
  */
-export class GeoJSON<P extends GeoJsonProperties = any, G extends geojson.GeometryObject = geojson.GeometryObject>
-    extends FeatureGroup<P>
-{
+export class GeoJSON<P = any, G extends geojson.GeometryObject = geojson.GeometryObject> extends FeatureGroup<P> {
     /**
      * Convert layer into GeoJSON feature
      */
-    static getFeature<P extends GeoJsonProperties = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
+    static getFeature<P = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
         layer: Layer,
         newGeometry: geojson.Feature<G, P> | G,
     ): geojson.Feature<G, P>;
@@ -2385,10 +2359,7 @@ export class GeoJSON<P extends GeoJsonProperties = any, G extends geojson.Geomet
      * Creates a Layer from a given GeoJSON feature. Can use a custom pointToLayer
      * and/or coordsToLatLng functions if provided as options.
      */
-    static geometryToLayer<
-        P extends GeoJsonProperties = any,
-        G extends geojson.GeometryObject = geojson.GeometryObject,
-    >(
+    static geometryToLayer<P = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
         featureData: geojson.Feature<G, P>,
         options?: GeoJSONOptions<P, G>,
     ): Layer;
@@ -2426,7 +2397,7 @@ export class GeoJSON<P extends GeoJsonProperties = any, G extends geojson.Geomet
     /**
      * Normalize GeoJSON geometries/features into GeoJSON features.
      */
-    static asFeature<P extends GeoJsonProperties = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
+    static asFeature<P = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
         geojson: geojson.Feature<G, P> | G,
     ): geojson.Feature<G, P>;
 
@@ -2458,11 +2429,11 @@ export class GeoJSON<P extends GeoJsonProperties = any, G extends geojson.Geomet
  * map (you can alternatively add it later with addData method) and
  * an options object.
  */
-export function geoJSON<P extends GeoJsonProperties = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
+export function geoJSON<P = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
     geojson?: geojson.GeoJsonObject | geojson.GeoJsonObject[] | null,
     options?: GeoJSONOptions<P, G> | null,
 ): GeoJSON<P, G>;
-export function geoJson<P extends GeoJsonProperties = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
+export function geoJson<P = any, G extends geojson.GeometryObject = geojson.GeometryObject>(
     geojson?: geojson.GeoJsonObject | geojson.GeoJsonObject[] | null,
     options?: GeoJSONOptions<P, G> | null,
 ): GeoJSON<P, G>;
@@ -3096,7 +3067,7 @@ export interface MarkerOptions extends InteractiveLayerOptions {
     autoPanOnFocus?: boolean | undefined;
 }
 
-export class Marker<P extends GeoJsonProperties = any> extends Layer {
+export class Marker<P = any> extends Layer {
     constructor(latlng: LatLngExpression, options?: MarkerOptions);
     toGeoJSON(precision?: number | false): geojson.Feature<geojson.Point, P>;
     getLatLng(): LatLng;
@@ -3115,7 +3086,7 @@ export class Marker<P extends GeoJsonProperties = any> extends Layer {
     protected _shadow: HTMLElement | undefined;
 }
 
-export function marker<P extends GeoJsonProperties = any>(latlng: LatLngExpression, options?: MarkerOptions): Marker<P>;
+export function marker<P = any>(latlng: LatLngExpression, options?: MarkerOptions): Marker<P>;
 
 export namespace Browser {
     // sorting according to https://leafletjs.com/reference-1.5.0.html#browser

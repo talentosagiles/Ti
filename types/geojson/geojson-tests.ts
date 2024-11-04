@@ -517,6 +517,3 @@ const geoJsonWithSpecificGeometryAndProperties: GeoJSON<Point, { a: number }>[] 
         ],
     },
 ];
-
-// @ts-expect-error -- Number should not be usable as a properties type
-declare const featureWithInvalidNumberProperties: Feature<Point, number>;

@@ -16,14 +16,14 @@ declare namespace whichPolygon {
         tree: RBush<unknown>;
     }
 
-    type GeoJson<Properties extends GeoJsonProperties> = FeatureCollection<Geometry, Properties>;
+    type GeoJson<Properties> = FeatureCollection<Geometry, Properties>;
 }
 
 /**
  * The input GeoJSON must be a feature collection of polygons or multipolygons.
  * The query returns the properties of the matched polygon feature.
  */
-declare function whichPolygon<Properties extends GeoJsonProperties = GeoJsonProperties>(
+declare function whichPolygon<Properties = GeoJsonProperties>(
     data: whichPolygon.GeoJson<Properties>,
 ): whichPolygon.Query<Properties>;
 
