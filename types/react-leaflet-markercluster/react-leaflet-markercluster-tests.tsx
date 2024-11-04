@@ -57,5 +57,6 @@ const MarkerCluster = (
                 // progress.style.display = 'none';
             }
         }}
+        children={<></>}
     />
 );
