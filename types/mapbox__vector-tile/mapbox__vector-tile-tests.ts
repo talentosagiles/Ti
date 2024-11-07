@@ -22,7 +22,7 @@ vtf.id;
 // $ExpectType Point[][]
 vtf.loadGeometry();
 
-// $ExpectType Feature<Geometry, GeoJsonProperties>
+// $ExpectType Feature<Geometry | null, GeoJsonProperties>
 vtf.toGeoJSON(1, 2, 3);
 
 if (vtf.bbox) {

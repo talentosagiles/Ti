@@ -21,13 +21,13 @@ import {
     ViewportProps,
 } from "react-map-gl";
 
-import { FeatureCollection } from "geojson";
+import { FeatureCollection, Geometry } from "geojson";
 
 interface State {
     viewport: ViewportProps;
 }
 
-const geojson: FeatureCollection = {
+const geojson: FeatureCollection<Geometry> = {
     type: "FeatureCollection",
     features: [{ type: "Feature", properties: {}, geometry: { type: "Point", coordinates: [-122.4, 37.8] } }],
 };
