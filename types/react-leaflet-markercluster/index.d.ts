@@ -169,6 +169,14 @@ interface MarkerClusterGroupProps {
      * Defaults to null.
      */
     chunkProgress?: ((processed: number, total: number, elapsed: number) => void) | null;
+
+    /**
+     * children
+     * 
+     * Allow to add childrens (Marker) to the MarkerClusterGroup.
+     */
+    
+    children?: React.ReactNode | null;
 }
 
 declare const MarkerClusterGroup: ComponentType<MarkerClusterGroupProps>;
