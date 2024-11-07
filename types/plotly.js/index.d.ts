@@ -1493,7 +1493,7 @@ export interface PlotData {
     rotation: number;
     theta: Datum[];
     r: Datum[];
-    customdata: Datum[] | Datum[][];
+    customdata: Datum[] | Datum[][] | Datum[][][];
     selectedpoints: Datum[];
     domain: Partial<{
         row: number;
